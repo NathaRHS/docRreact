@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚛️ Documentation Complète React</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --border: #e5e7eb;
+      --code-bg: #0f172a;
+      --inline-code: #eff6ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .document {
+      background: var(--card);
+      padding: 42px;
+      border-radius: 18px;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 2.3rem;
+      color: var(--primary);
+      border-bottom: 3px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    h2 {
+      margin-top: 48px;
+      font-size: 1.65rem;
+      color: #111827;
+      border-left: 5px solid var(--primary);
+      padding-left: 12px;
+    }
+
+    h3 {
+      margin-top: 28px;
+      color: #1f2937;
+    }
+
+    p {
+      margin: 12px 0;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul, ol {
+      padding-left: 28px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    blockquote {
+      margin: 20px 0;
+      padding: 14px 18px;
+      background: #f8fafc;
+      border-left: 5px solid var(--primary);
+      color: var(--muted);
+      border-radius: 8px;
+    }
+
+    pre {
+      background: var(--code-bg);
+      color: #e5e7eb;
+      padding: 18px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 0.95rem;
+    }
+
+    code {
+      font-family: Consolas, Monaco, "Courier New", monospace;
+    }
+
+    p code, li code, td code {
+      background: var(--inline-code);
+      color: #1d4ed8;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 0.92em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    tr:nth-child(even) td {
+      background: #f9fafb;
+    }
+
+    .top-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 16px;
+      }
+
+      .document {
+        padding: 24px 18px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <article class="document">
+      <h1 id="documentation-complète-react">⚛️ Documentation Complète React</h1><blockquote><p>Guide de référence exhaustif — du minimum vital aux patterns avancés</p></blockquote><p>---</p><h2 id="table-des-matières">Table des matières</h2><ol><li><a href="#1-installation--setup">Installation &amp; Setup</a></li><li><a href="#2-structure-dun-composant">Structure d&#x27;un composant</a></li><li><a href="#3-jsx--les-règles">JSX — Les règles</a></li><li><a href="#4-props">Props</a></li><li><a href="#5-state--usestate">State &amp; useState</a></li><li><a href="#6-useeffect">useEffect</a></li><li><a href="#7-useref">useRef</a></li><li><a href="#8-usecontext">useContext</a></li><li><a href="#9-usereducer">useReducer</a></li><li><a href="#10-usememo--usecallback">useMemo &amp; useCallback</a></li><li><a href="#11-useid-usetransition-usedeferredvalue">useId, useTransition, useDeferredValue</a></li><li><a href="#12-custom-hooks">Custom Hooks</a></li><li><a href="#13-boucles--rendu-de-listes">Boucles &amp; Rendu de listes</a></li><li><a href="#14-conditions--rendu-conditionnel">Conditions &amp; Rendu conditionnel</a></li><li><a href="#15-événements">Événements</a></li><li><a href="#16-formulaires">Formulaires</a></li><li><a href="#17-fetch--appels-api">Fetch &amp; Appels API</a></li><li><a href="#18-react-router">React Router</a></li><li><a href="#19-gestion-des-erreurs">Gestion des erreurs</a></li><li><a href="#20-optimisation--performance">Optimisation &amp; Performance</a></li><li><a href="#21-patterns-avancés">Patterns avancés</a></li><li><a href="#22-anti-patterns-à-éviter">Anti-patterns à éviter</a></li></ol><p>---</p><h2 id="1-installation-setup">1. Installation &amp; Setup</h2><h3 id="créer-un-projet">Créer un projet</h3><pre><code class=" language-bash"># Avec Vite (recommandé — rapide)
+npm create vite@latest mon-app -- --template react
+cd mon-app
+npm install
+npm run dev
+
+# Avec Create React App (legacy)
+npx create-react-app mon-app
+cd mon-app
+npm start
+
+# Avec Next.js (React + SSR)
+npx create-next-app@latest mon-app</code></pre><h3 id="structure-minimale-dun-projet-vite">Structure minimale d&#x27;un projet Vite</h3><pre><code class="">mon-app/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── App.jsx        ← composant racine
+│   └── main.jsx       ← point d&#x27;entrée
+├── index.html
+├── package.json
+└── vite.config.js</code></pre><h3 id="point-dentrée-mainjsx">Point d&#x27;entrée (<code>main.jsx</code>)</h3><pre><code class=" language-jsx">import React from &#x27;react&#x27;
+import ReactDOM from &#x27;react-dom/client&#x27;
+import App from &#x27;./App&#x27;
+import &#x27;./index.css&#x27;
+
+ReactDOM.createRoot(document.getElementById(&#x27;root&#x27;)).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;
+)</code></pre><p>---</p><h2 id="2-structure-dun-composant">2. Structure d&#x27;un composant</h2><p>Un composant React est une <strong>fonction</strong> qui retourne du JSX.</p><pre><code class=" language-jsx">// ✅ Composant fonctionnel (standard actuel)
+function MonComposant() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Bonjour !&lt;/h1&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default MonComposant</code></pre><h3 id="nommage">Nommage</h3><pre><code class=" language-jsx">// ✅ PascalCase obligatoire — sinon React le traite comme un tag HTML
+function BoutonPrincipal() { ... }
+
+// ❌ Mauvais — interprété comme &lt;boutonprincipal&gt; (tag inconnu)
+function boutonprincipal() { ... }</code></pre><h3 id="imports-exports">Imports &amp; Exports</h3><pre><code class=" language-jsx">// Export par défaut (un seul par fichier)
+export default function App() { ... }
+
+// Export nommé (plusieurs possibles)
+export function Header() { ... }
+export function Footer() { ... }
+
+// Import
+import App from &#x27;./App&#x27;             // défaut
+import { Header, Footer } from &#x27;./Layout&#x27;  // nommés</code></pre><p>---</p><h2 id="3-jsx-les-règles">3. JSX — Les règles</h2><p>JSX est du JavaScript qui ressemble à du HTML.</p><pre><code class=" language-jsx">function Exemple() {
+  const nom = &quot;React&quot;
+  const estConnecte = true
+  const style = { color: &#x27;blue&#x27;, fontSize: &#x27;18px&#x27; }
+
+  return (
+    // ✅ Un seul élément racine (ou Fragment)
+    &lt;div&gt;
+      {/* Commentaire en JSX */}
+
+      {/* Expression JavaScript entre accolades */}
+      &lt;h1&gt;Bonjour {nom} !&lt;/h1&gt;
+
+      {/* className au lieu de class */}
+      &lt;p className=&quot;texte-principal&quot;&gt;Paragraphe&lt;/p&gt;
+
+      {/* htmlFor au lieu de for */}
+      &lt;label htmlFor=&quot;email&quot;&gt;Email&lt;/label&gt;
+
+      {/* Style en objet camelCase */}
+      &lt;p style={style}&gt;Texte stylé&lt;/p&gt;
+      &lt;p style={{ color: &#x27;red&#x27;, marginTop: &#x27;10px&#x27; }}&gt;Inline direct&lt;/p&gt;
+
+      {/* Attributs booléens */}
+      &lt;input disabled /&gt;
+      &lt;input disabled={true} /&gt;
+
+      {/* Self-closing obligatoire */}
+      &lt;input type=&quot;text&quot; /&gt;
+      &lt;br /&gt;
+      &lt;img src=&quot;photo.jpg&quot; alt=&quot;description&quot; /&gt;
+    &lt;/div&gt;
+  )
+}</code></pre><h3 id="fragment-éviter-un-div-inutile">Fragment — éviter un div inutile</h3><pre><code class=" language-jsx">import { Fragment } from &#x27;react&#x27;
+
+function Exemple() {
+  return (
+    // Syntaxe courte &lt;&gt;
+    &lt;&gt;
+      &lt;h1&gt;Titre&lt;/h1&gt;
+      &lt;p&gt;Paragraphe&lt;/p&gt;
+    &lt;/&gt;
+  )
+}
+
+// Avec clé (listes) : utiliser Fragment explicite
+function Liste({ items }) {
+  return items.map(item =&gt; (
+    &lt;Fragment key={item.id}&gt;
+      &lt;dt&gt;{item.terme}&lt;/dt&gt;
+      &lt;dd&gt;{item.definition}&lt;/dd&gt;
+    &lt;/Fragment&gt;
+  ))
+}</code></pre><p>---</p><h2 id="4-props">4. Props</h2><p>Les props permettent de <strong>passer des données</strong> d&#x27;un parent vers un enfant.</p><pre><code class=" language-jsx">// Composant enfant — reçoit les props
+function Carte({ titre, description, age, estAdmin = false, onClick }) {
+  return (
+    &lt;div onClick={onClick}&gt;
+      &lt;h2&gt;{titre}&lt;/h2&gt;
+      &lt;p&gt;{description}&lt;/p&gt;
+      &lt;p&gt;Âge : {age}&lt;/p&gt;
+      {estAdmin &amp;&amp; &lt;span&gt;👑 Admin&lt;/span&gt;}
+    &lt;/div&gt;
+  )
+}
+
+// Composant parent — passe les props
+function App() {
+  return (
+    &lt;Carte
+      titre=&quot;Jean Dupont&quot;
+      description=&quot;Développeur React&quot;
+      age={28}
+      estAdmin={true}
+      onClick={() =&gt; console.log(&#x27;cliqué&#x27;)}
+    /&gt;
+  )
+}</code></pre><h3 id="spread-de-props">Spread de props</h3><pre><code class=" language-jsx">const infos = { titre: &quot;Alice&quot;, age: 25 }
+
+// Équivalent à titre=&quot;Alice&quot; age={25}
+&lt;Carte {...infos} /&gt;</code></pre><h3 id="props-enfants-children">Props enfants (<code>children</code>)</h3><pre><code class=" language-jsx">function Boite({ children, couleur = &#x27;blue&#x27; }) {
+  return (
+    &lt;div style={{ border: `2px solid ${couleur}`, padding: &#x27;16px&#x27; }}&gt;
+      {children}
+    &lt;/div&gt;
+  )
+}
+
+// Utilisation
+&lt;Boite couleur=&quot;red&quot;&gt;
+  &lt;p&gt;Contenu quelconque&lt;/p&gt;
+  &lt;button&gt;Clic&lt;/button&gt;
+&lt;/Boite&gt;</code></pre><p>---</p><h2 id="5-state-usestate">5. State &amp; useState</h2><p>Le state est une <strong>donnée locale</strong> au composant qui, quand elle change, <strong>re-rend</strong> le composant.</p><pre><code class=" language-jsx">import { useState } from &#x27;react&#x27;
+
+function Compteur() {
+  // [valeurActuelle, fonctionDeMiseAJour] = useState(valeurInitiale)
+  const [count, setCount] = useState(0)
+  const [nom, setNom] = useState(&#x27;&#x27;)
+  const [actif, setActif] = useState(false)
+  const [liste, setListe] = useState([])
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Compteur : {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+1&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(prev =&gt; prev - 1)}&gt;-1&lt;/button&gt;
+      {/* ✅ Utiliser la forme fonctionnelle quand la nouvelle valeur dépend de l&#x27;ancienne */}
+    &lt;/div&gt;
+  )
+}</code></pre><h3 id="state-avec-objet">State avec objet</h3><pre><code class=" language-jsx">function Formulaire() {
+  const [user, setUser] = useState({ nom: &#x27;&#x27;, email: &#x27;&#x27;, age: 0 })
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    // ✅ Toujours créer un nouvel objet (ne pas muter)
+    setUser(prev =&gt; ({ ...prev, [name]: value }))
+  }
+
+  return (
+    &lt;form&gt;
+      &lt;input name=&quot;nom&quot; value={user.nom} onChange={handleChange} /&gt;
+      &lt;input name=&quot;email&quot; value={user.email} onChange={handleChange} /&gt;
+    &lt;/form&gt;
+  )
+}</code></pre><h3 id="state-avec-tableau">State avec tableau</h3><pre><code class=" language-jsx">function ListeTodos() {
+  const [todos, setTodos] = useState([&#x27;Apprendre React&#x27;])
+
+  // Ajouter
+  const ajouter = (item) =&gt; setTodos(prev =&gt; [...prev, item])
+
+  // Supprimer
+  const supprimer = (index) =&gt;
+    setTodos(prev =&gt; prev.filter((_, i) =&gt; i !== index))
+
+  // Modifier
+  const modifier = (index, nouvelItem) =&gt;
+    setTodos(prev =&gt; prev.map((item, i) =&gt; i === index ? nouvelItem : item))
+
+  return (
+    &lt;ul&gt;
+      {todos.map((todo, i) =&gt; (
+        &lt;li key={i}&gt;
+          {todo}
+          &lt;button onClick={() =&gt; supprimer(i)}&gt;✕&lt;/button&gt;
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  )
+}</code></pre><p>---</p><h2 id="6-useeffect">6. useEffect</h2><p>Exécute du code <strong>après</strong> le rendu — pour les effets de bord (fetch, abonnements, timers…).</p><pre><code class=" language-jsx">import { useState, useEffect } from &#x27;react&#x27;
+
+function Exemple() {
+  const [data, setData] = useState(null)
+  const [userId, setUserId] = useState(1)
+
+  // ✅ [] — s&#x27;exécute UNE SEULE FOIS (au montage)
+  useEffect(() =&gt; {
+    console.log(&#x27;Composant monté&#x27;)
+  }, [])
+
+  // ✅ [userId] — s&#x27;exécute quand userId change
+  useEffect(() =&gt; {
+    console.log(&#x27;userId a changé :&#x27;, userId)
+  }, [userId])
+
+  // ✅ Sans tableau — s&#x27;exécute à chaque rendu (rare)
+  useEffect(() =&gt; {
+    document.title = `User #${userId}`
+  })
+
+  // ✅ Avec nettoyage (cleanup) — important pour éviter les fuites mémoire
+  useEffect(() =&gt; {
+    const timer = setInterval(() =&gt; console.log(&#x27;tick&#x27;), 1000)
+    const handleResize = () =&gt; console.log(&#x27;resize&#x27;)
+    window.addEventListener(&#x27;resize&#x27;, handleResize)
+
+    // Fonction de nettoyage appelée au démontage ou avant le prochain effet
+    return () =&gt; {
+      clearInterval(timer)
+      window.removeEventListener(&#x27;resize&#x27;, handleResize)
+    }
+  }, [])
+
+  return &lt;div&gt;{data}&lt;/div&gt;
+}</code></pre><h3 id="useeffect-avec-fetch-pattern-correct">useEffect avec fetch (pattern correct)</h3><pre><code class=" language-jsx">function Utilisateur({ id }) {
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() =&gt; {
+    let ignore = false  // ✅ Évite les race conditions
+
+    async function fetchUser() {
+      try {
+        setLoading(true)
+        const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        if (!res.ok) throw new Error(&#x27;Erreur réseau&#x27;)
+        const data = await res.json()
+        if (!ignore) setUser(data)  // N&#x27;update que si le composant est encore monté
+      } catch (err) {
+        if (!ignore) setError(err.message)
+      } finally {
+        if (!ignore) setLoading(false)
+      }
+    }
+
+    fetchUser()
+
+    return () =&gt; { ignore = true }  // Nettoyage
+  }, [id])  // Re-fetch si id change
+
+  if (loading) return &lt;p&gt;Chargement...&lt;/p&gt;
+  if (error) return &lt;p&gt;Erreur : {error}&lt;/p&gt;
+  return &lt;p&gt;{user?.name}&lt;/p&gt;
+}</code></pre><p>---</p><h2 id="7-useref">7. useRef</h2><p>Accéder à un <strong>élément DOM</strong> ou stocker une valeur <strong>sans déclencher de re-rendu</strong>.</p><pre><code class=" language-jsx">import { useRef, useEffect } from &#x27;react&#x27;
+
+function ChampFocus() {
+  const inputRef = useRef(null)
+
+  useEffect(() =&gt; {
+    inputRef.current.focus()  // Focus automatique au montage
+  }, [])
+
+  return &lt;input ref={inputRef} placeholder=&quot;Je suis focusé !&quot; /&gt;
+}</code></pre><h3 id="useref-comme-variable-persistante">useRef comme variable persistante</h3><pre><code class=" language-jsx">function Chronometre() {
+  const [temps, setTemps] = useState(0)
+  const intervalRef = useRef(null)  // Stocke l&#x27;id du timer sans re-rendre
+
+  function demarrer() {
+    intervalRef.current = setInterval(() =&gt; {
+      setTemps(prev =&gt; prev + 1)
+    }, 1000)
+  }
+
+  function arreter() {
+    clearInterval(intervalRef.current)
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;{temps}s&lt;/p&gt;
+      &lt;button onClick={demarrer}&gt;Start&lt;/button&gt;
+      &lt;button onClick={arreter}&gt;Stop&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}</code></pre><h3 id="stocker-la-valeur-précédente">Stocker la valeur précédente</h3><pre><code class=" language-jsx">function usePrevious(valeur) {
+  const ref = useRef()
+  useEffect(() =&gt; { ref.current = valeur })
+  return ref.current
+}
+
+function Composant({ count }) {
+  const precedent = usePrevious(count)
+  return &lt;p&gt;Avant : {precedent} — Maintenant : {count}&lt;/p&gt;
+}</code></pre><p>---</p><h2 id="8-usecontext">8. useContext</h2><p>Partager des données dans tout l&#x27;arbre de composants <strong>sans prop drilling</strong>.</p><pre><code class=" language-jsx">import { createContext, useContext, useState } from &#x27;react&#x27;
+
+// 1. Créer le contexte
+const ThemeContext = createContext(null)
+
+// 2. Créer le Provider
+function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState(&#x27;clair&#x27;)
+
+  const toggleTheme = () =&gt;
+    setTheme(prev =&gt; prev === &#x27;clair&#x27; ? &#x27;sombre&#x27; : &#x27;clair&#x27;)
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, toggleTheme }}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  )
+}
+
+// 3. Consommer dans n&#x27;importe quel composant enfant
+function BoutonTheme() {
+  const { theme, toggleTheme } = useContext(ThemeContext)
+
+  return (
+    &lt;button onClick={toggleTheme}&gt;
+      Thème actuel : {theme}
+    &lt;/button&gt;
+  )
+}
+
+// 4. Utilisation
+function App() {
+  return (
+    &lt;ThemeProvider&gt;
+      &lt;BoutonTheme /&gt;
+    &lt;/ThemeProvider&gt;
+  )
+}</code></pre><h3 id="custom-hook-pour-le-contexte-bonne-pratique">Custom hook pour le contexte (bonne pratique)</h3><pre><code class=" language-jsx">// ✅ Encapsuler useContext dans un hook custom
+function useTheme() {
+  const context = useContext(ThemeContext)
+  if (!context) throw new Error(&#x27;useTheme doit être utilisé dans ThemeProvider&#x27;)
+  return context
+}
+
+// Utilisation simplifiée
+function MonComposant() {
+  const { theme } = useTheme()
+  return &lt;div&gt;{theme}&lt;/div&gt;
+}</code></pre><p>---</p><h2 id="9-usereducer">9. useReducer</h2><p>Alternative à <code>useState</code> pour les <strong>états complexes</strong> avec plusieurs actions.</p><pre><code class=" language-jsx">import { useReducer } from &#x27;react&#x27;
+
+// 1. Définir le reducer (état, action) =&gt; nouvelÉtat
+function reducer(state, action) {
+  switch (action.type) {
+    case &#x27;INCREMENTER&#x27;:
+      return { ...state, count: state.count + 1 }
+    case &#x27;DECREMENTER&#x27;:
+      return { ...state, count: state.count - 1 }
+    case &#x27;RESET&#x27;:
+      return { ...state, count: 0 }
+    case &#x27;SET_NOM&#x27;:
+      return { ...state, nom: action.payload }
+    default:
+      throw new Error(`Action inconnue : ${action.type}`)
+  }
+}
+
+// 2. État initial
+const etatInitial = { count: 0, nom: &#x27;&#x27; }
+
+// 3. Utiliser dans le composant
+function Compteur() {
+  const [state, dispatch] = useReducer(reducer, etatInitial)
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Compteur : {state.count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; dispatch({ type: &#x27;INCREMENTER&#x27; })}&gt;+&lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch({ type: &#x27;DECREMENTER&#x27; })}&gt;-&lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch({ type: &#x27;RESET&#x27; })}&gt;Reset&lt;/button&gt;
+      &lt;input
+        value={state.nom}
+        onChange={e =&gt; dispatch({ type: &#x27;SET_NOM&#x27;, payload: e.target.value })}
+      /&gt;
+    &lt;/div&gt;
+  )
+}</code></pre><p>---</p><h2 id="10-usememo-usecallback">10. useMemo &amp; useCallback</h2><p>Optimisation : <strong>mémoriser</strong> des calculs ou des fonctions pour éviter des recalculs inutiles.</p><h3 id="usememo-mémoriser-un-calcul-coûteux">useMemo — mémoriser un calcul coûteux</h3><pre><code class=" language-jsx">import { useMemo, useState } from &#x27;react&#x27;
+
+function ListeFiltree({ items, recherche }) {
+  // ✅ Ne recalcule que si items ou recherche change
+  const itemsFiltres = useMemo(() =&gt; {
+    console.log(&#x27;Filtrage en cours...&#x27;)
+    return items.filter(item =&gt;
+      item.nom.toLowerCase().includes(recherche.toLowerCase())
+    )
+  }, [items, recherche])
+
+  return (
+    &lt;ul&gt;
+      {itemsFiltres.map(item =&gt; &lt;li key={item.id}&gt;{item.nom}&lt;/li&gt;)}
+    &lt;/ul&gt;
+  )
+}</code></pre><h3 id="usecallback-mémoriser-une-fonction">useCallback — mémoriser une fonction</h3><pre><code class=" language-jsx">import { useCallback, useState } from &#x27;react&#x27;
+
+function Parent() {
+  const [count, setCount] = useState(0)
+  const [items, setItems] = useState([])
+
+  // ✅ Référence stable — Enfant ne re-rend pas inutilement
+  const ajouterItem = useCallback((item) =&gt; {
+    setItems(prev =&gt; [...prev, item])
+  }, [])  // Pas de dépendances car utilise la forme fonctionnelle
+
+  return (
+    &lt;&gt;
+      &lt;button onClick={() =&gt; setCount(c =&gt; c + 1)}&gt;Parent re-rend ({count})&lt;/button&gt;
+      &lt;Enfant onAjouter={ajouterItem} /&gt;
+    &lt;/&gt;
+  )
+}
+
+// React.memo empêche le re-rendu si les props n&#x27;ont pas changé
+const Enfant = React.memo(function Enfant({ onAjouter }) {
+  console.log(&#x27;Enfant rendu&#x27;)
+  return &lt;button onClick={() =&gt; onAjouter(&#x27;nouvel item&#x27;)}&gt;Ajouter&lt;/button&gt;
+})</code></pre><p>---</p><h2 id="11-useid-usetransition-usedeferredvalue">11. useId, useTransition, useDeferredValue</h2><h3 id="useid-id-unique-accessible">useId — ID unique accessible</h3><pre><code class=" language-jsx">import { useId } from &#x27;react&#x27;
+
+function ChampFormulaire({ label }) {
+  const id = useId()  // Génère un ID unique stable
+
+  return (
+    &lt;div&gt;
+      &lt;label htmlFor={id}&gt;{label}&lt;/label&gt;
+      &lt;input id={id} type=&quot;text&quot; /&gt;
+    &lt;/div&gt;
+  )
+}</code></pre><h3 id="usetransition-marquer-une-mise-à-jour-comme-non-urgente">useTransition — marquer une mise à jour comme non urgente</h3><pre><code class=" language-jsx">import { useState, useTransition } from &#x27;react&#x27;
+
+function Recherche() {
+  const [query, setQuery] = useState(&#x27;&#x27;)
+  const [resultats, setResultats] = useState([])
+  const [isPending, startTransition] = useTransition()
+
+  function handleChange(e) {
+    setQuery(e.target.value)  // Mise à jour urgente (input)
+
+    startTransition(() =&gt; {
+      // Mise à jour non urgente (peut être interrompue)
+      setResultats(rechercherItems(e.target.value))
+    })
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;input value={query} onChange={handleChange} /&gt;
+      {isPending &amp;&amp; &lt;p&gt;Chargement...&lt;/p&gt;}
+      &lt;ul&gt;
+        {resultats.map(r =&gt; &lt;li key={r.id}&gt;{r.nom}&lt;/li&gt;)}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  )
+}</code></pre><h3 id="usedeferredvalue">useDeferredValue</h3><pre><code class=" language-jsx">import { useDeferredValue } from &#x27;react&#x27;
+
+function App({ liste }) {
+  const listeDeferred = useDeferredValue(liste)
+  // listeDeferred est &quot;en retard&quot; — l&#x27;UI reste réactive pendant le calcul
+
+  return &lt;ListeLourde items={listeDeferred} /&gt;
+}</code></pre><p>---</p><h2 id="12-custom-hooks">12. Custom Hooks</h2><p>Extraire de la logique réutilisable dans des fonctions préfixées <code>use</code>.</p><h3 id="uselocalstorage">useLocalStorage</h3><pre><code class=" language-jsx">import { useState, useEffect } from &#x27;react&#x27;
+
+function useLocalStorage(cle, valeurInitiale) {
+  const [valeur, setValeur] = useState(() =&gt; {
+    try {
+      const item = window.localStorage.getItem(cle)
+      return item ? JSON.parse(item) : valeurInitiale
+    } catch {
+      return valeurInitiale
+    }
+  })
+
+  useEffect(() =&gt; {
+    window.localStorage.setItem(cle, JSON.stringify(valeur))
+  }, [cle, valeur])
+
+  return [valeur, setValeur]
+}
+
+// Utilisation
+function App() {
+  const [nom, setNom] = useLocalStorage(&#x27;nom&#x27;, &#x27;&#x27;)
+  return &lt;input value={nom} onChange={e =&gt; setNom(e.target.value)} /&gt;
+}</code></pre><h3 id="usefetch">useFetch</h3><pre><code class=" language-jsx">import { useState, useEffect } from &#x27;react&#x27;
+
+function useFetch(url) {
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() =&gt; {
+    let ignore = false
+    setLoading(true)
+    setError(null)
+
+    fetch(url)
+      .then(res =&gt; {
+        if (!res.ok) throw new Error(`Erreur ${res.status}`)
+        return res.json()
+      })
+      .then(data =&gt; { if (!ignore) setData(data) })
+      .catch(err =&gt; { if (!ignore) setError(err.message) })
+      .finally(() =&gt; { if (!ignore) setLoading(false) })
+
+    return () =&gt; { ignore = true }
+  }, [url])
+
+  return { data, loading, error }
+}
+
+// Utilisation
+function Posts() {
+  const { data, loading, error } = useFetch(&#x27;https://jsonplaceholder.typicode.com/posts&#x27;)
+
+  if (loading) return &lt;p&gt;Chargement...&lt;/p&gt;
+  if (error) return &lt;p&gt;Erreur : {error}&lt;/p&gt;
+  return &lt;ul&gt;{data?.map(p =&gt; &lt;li key={p.id}&gt;{p.title}&lt;/li&gt;)}&lt;/ul&gt;
+}</code></pre><h3 id="usetoggle">useToggle</h3><pre><code class=" language-jsx">import { useState, useCallback } from &#x27;react&#x27;
+
+function useToggle(initial = false) {
+  const [valeur, setValeur] = useState(initial)
+  const toggle = useCallback(() =&gt; setValeur(v =&gt; !v), [])
+  const setTrue = useCallback(() =&gt; setValeur(true), [])
+  const setFalse = useCallback(() =&gt; setValeur(false), [])
+  return [valeur, toggle, setTrue, setFalse]
+}
+
+function Modal() {
+  const [ouvert, toggle, ouvrir, fermer] = useToggle(false)
+  return (
+    &lt;&gt;
+      &lt;button onClick={ouvrir}&gt;Ouvrir&lt;/button&gt;
+      {ouvert &amp;&amp; (
+        &lt;div&gt;
+          &lt;p&gt;Contenu de la modal&lt;/p&gt;
+          &lt;button onClick={fermer}&gt;Fermer&lt;/button&gt;
+        &lt;/div&gt;
+      )}
+    &lt;/&gt;
+  )
+}</code></pre><p>---</p><h2 id="13-boucles-rendu-de-listes">13. Boucles &amp; Rendu de listes</h2><h3 id="map-la-méthode-principale">map() — la méthode principale</h3><pre><code class=" language-jsx">function ListeUtilisateurs({ users }) {
+  return (
+    &lt;ul&gt;
+      {users.map(user =&gt; (
+        // ✅ key obligatoire — unique et stable (pas l&#x27;index si possible)
+        &lt;li key={user.id}&gt;
+          {user.nom} — {user.email}
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  )
+}</code></pre><h3 id="rendre-des-composants-depuis-un-tableau">Rendre des composants depuis un tableau</h3><pre><code class=" language-jsx">const produits = [
+  { id: 1, nom: &#x27;Clavier&#x27;, prix: 79 },
+  { id: 2, nom: &#x27;Souris&#x27;, prix: 29 },
+  { id: 3, nom: &#x27;Écran&#x27;, prix: 299 },
+]
+
+function Catalogue() {
+  return (
+    &lt;div className=&quot;grille&quot;&gt;
+      {produits.map(({ id, nom, prix }) =&gt; (
+        &lt;CarteProduit key={id} nom={nom} prix={prix} /&gt;
+      ))}
+    &lt;/div&gt;
+  )
+}
+
+function CarteProduit({ nom, prix }) {
+  return (
+    &lt;div className=&quot;carte&quot;&gt;
+      &lt;h3&gt;{nom}&lt;/h3&gt;
+      &lt;p&gt;{prix} €&lt;/p&gt;
+    &lt;/div&gt;
+  )
+}</code></pre><h3 id="filter-map">filter() + map()</h3><pre><code class=" language-jsx">function PostsActifs({ posts }) {
+  return (
+    &lt;ul&gt;
+      {posts
+        .filter(post =&gt; post.publie)
+        .map(post =&gt; (
+          &lt;li key={post.id}&gt;{post.titre}&lt;/li&gt;
+        ))
+      }
+    &lt;/ul&gt;
+  )
+}</code></pre><h3 id="boucle-imbriquée-tableau-2d">Boucle imbriquée (tableau 2D)</h3><pre><code class=" language-jsx">const categories = [
+  { id: 1, nom: &#x27;Fruits&#x27;, items: [&#x27;Pomme&#x27;, &#x27;Banane&#x27;, &#x27;Cerise&#x27;] },
+  { id: 2, nom: &#x27;Légumes&#x27;, items: [&#x27;Carotte&#x27;, &#x27;Poireau&#x27;] },
+]
+
+function Menu() {
+  return (
+    &lt;div&gt;
+      {categories.map(cat =&gt; (
+        &lt;div key={cat.id}&gt;
+          &lt;h2&gt;{cat.nom}&lt;/h2&gt;
+          &lt;ul&gt;
+            {cat.items.map((item, i) =&gt; (
+              &lt;li key={i}&gt;{item}&lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  )
+}</code></pre><p>---</p><h2 id="14-conditions-rendu-conditionnel">14. Conditions &amp; Rendu conditionnel</h2><pre><code class=" language-jsx">function Panneau({ user, score, items }) {
+  const estConnecte = !!user
+
+  return (
+    &lt;div&gt;
+      {/* ✅ &amp;&amp; — affiche si condition vraie */}
+      {estConnecte &amp;&amp; &lt;p&gt;Bienvenue {user.nom} !&lt;/p&gt;}
+
+      {/* ✅ Ternaire — si/sinon */}
+      {estConnecte ? &lt;BoutonDeconnexion /&gt; : &lt;BoutonConnexion /&gt;}
+
+      {/* ✅ || — valeur par défaut */}
+      &lt;p&gt;{user?.bio || &#x27;Aucune biographie&#x27;}&lt;/p&gt;
+
+      {/* ✅ Nullish coalescing ?? (null ou undefined seulement) */}
+      &lt;p&gt;{score ?? &#x27;Score non disponible&#x27;}&lt;/p&gt;
+
+      {/* ✅ Variable intermédiaire (pour la lisibilité) */}
+      {(() =&gt; {
+        if (score &gt; 90) return &lt;span&gt;🏆 Excellent&lt;/span&gt;
+        if (score &gt; 70) return &lt;span&gt;👍 Bien&lt;/span&gt;
+        return &lt;span&gt;📚 À améliorer&lt;/span&gt;
+      })()}
+
+      {/* ✅ Liste vide */}
+      {items.length === 0
+        ? &lt;p&gt;Aucun élément&lt;/p&gt;
+        : &lt;ul&gt;{items.map(i =&gt; &lt;li key={i.id}&gt;{i.nom}&lt;/li&gt;)}&lt;/ul&gt;
+      }
+    &lt;/div&gt;
+  )
+}</code></pre><p>---</p><h2 id="15-événements">15. Événements</h2><pre><code class=" language-jsx">function GestionEvenements() {
+  // ✅ Événement reçoit un SyntheticEvent (wrapper React autour du natif)
+  function handleClick(e) {
+    e.preventDefault()      // Empêcher comportement par défaut
+    e.stopPropagation()     // Stopper la propagation
+    console.log(e.target)   // L&#x27;élément cliqué
+  }
+
+  function handleChange(e) {
+    console.log(e.target.value)   // Valeur de l&#x27;input
+    console.log(e.target.checked) // Pour checkbox
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === &#x27;Enter&#x27;) console.log(&#x27;Entrée pressée&#x27;)
+    if (e.ctrlKey &amp;&amp; e.key === &#x27;s&#x27;) console.log(&#x27;Ctrl+S&#x27;)
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    console.log(Object.fromEntries(formData))
+  }
+
+  // Passer des arguments à un handler
+  function handleItemClick(id) {
+    console.log(&#x27;Item cliqué :&#x27;, id)
+  }
+
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;input onChange={handleChange} onKeyDown={handleKeyDown} /&gt;
+      &lt;button onClick={handleClick}&gt;Clic&lt;/button&gt;
+      &lt;button onClick={() =&gt; handleItemClick(42)}&gt;Item 42&lt;/button&gt;
+    &lt;/form&gt;
+  )
+}</code></pre><h3 id="événements-courants">Événements courants</h3><table><thead><tr><th>Événement React</th><th>Déclenché par</th></tr></thead><tbody><tr><td><code>onClick</code></td><td>Clic</td></tr><tr><td><code>onChange</code></td><td>Modification input</td></tr><tr><td><code>onSubmit</code></td><td>Soumission formulaire</td></tr><tr><td><code>onKeyDown / onKeyUp</code></td><td>Touche clavier</td></tr><tr><td><code>onFocus / onBlur</code></td><td>Focus / perte focus</td></tr><tr><td><code>onMouseEnter / onMouseLeave</code></td><td>Survol souris</td></tr><tr><td><code>onScroll</code></td><td>Défilement</td></tr><tr><td><code>onDragStart / onDrop</code></td><td>Drag &amp; Drop</td></tr></tbody></table><p>---</p><h2 id="16-formulaires">16. Formulaires</h2><h3 id="formulaire-contrôlé-recommandé">Formulaire contrôlé (recommandé)</h3><pre><code class=" language-jsx">function FormulaireInscription() {
+  const [form, setForm] = useState({
+    nom: &#x27;&#x27;,
+    email: &#x27;&#x27;,
+    motDePasse: &#x27;&#x27;,
+    role: &#x27;utilisateur&#x27;,
+    newsletter: false,
+  })
+  const [erreurs, setErreurs] = useState({})
+
+  function valider() {
+    const nouvellesErreurs = {}
+    if (!form.nom.trim()) nouvellesErreurs.nom = &#x27;Nom requis&#x27;
+    if (!form.email.includes(&#x27;@&#x27;)) nouvellesErreurs.email = &#x27;Email invalide&#x27;
+    if (form.motDePasse.length &lt; 6) nouvellesErreurs.motDePasse = &#x27;Min. 6 caractères&#x27;
+    return nouvellesErreurs
+  }
+
+  function handleChange(e) {
+    const { name, value, type, checked } = e.target
+    setForm(prev =&gt; ({
+      ...prev,
+      [name]: type === &#x27;checkbox&#x27; ? checked : value
+    }))
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const errs = valider()
+    if (Object.keys(errs).length &gt; 0) {
+      setErreurs(errs)
+      return
+    }
+    console.log(&#x27;Soumis :&#x27;, form)
+  }
+
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;div&gt;
+        &lt;input
+          name=&quot;nom&quot;
+          value={form.nom}
+          onChange={handleChange}
+          placeholder=&quot;Nom&quot;
+        /&gt;
+        {erreurs.nom &amp;&amp; &lt;span className=&quot;erreur&quot;&gt;{erreurs.nom}&lt;/span&gt;}
+      &lt;/div&gt;
+
+      &lt;input
+        name=&quot;email&quot;
+        type=&quot;email&quot;
+        value={form.email}
+        onChange={handleChange}
+      /&gt;
+
+      &lt;input
+        name=&quot;motDePasse&quot;
+        type=&quot;password&quot;
+        value={form.motDePasse}
+        onChange={handleChange}
+      /&gt;
+
+      &lt;select name=&quot;role&quot; value={form.role} onChange={handleChange}&gt;
+        &lt;option value=&quot;utilisateur&quot;&gt;Utilisateur&lt;/option&gt;
+        &lt;option value=&quot;admin&quot;&gt;Admin&lt;/option&gt;
+      &lt;/select&gt;
+
+      &lt;label&gt;
+        &lt;input
+          name=&quot;newsletter&quot;
+          type=&quot;checkbox&quot;
+          checked={form.newsletter}
+          onChange={handleChange}
+        /&gt;
+        S&#x27;abonner à la newsletter
+      &lt;/label&gt;
+
+      &lt;button type=&quot;submit&quot;&gt;S&#x27;inscrire&lt;/button&gt;
+    &lt;/form&gt;
+  )
+}</code></pre><p>---</p><h2 id="17-fetch-appels-api">17. Fetch &amp; Appels API</h2><h3 id="fetch-natif">fetch natif</h3><pre><code class=" language-jsx">// GET
+const res = await fetch(&#x27;https://api.example.com/users&#x27;)
+const data = await res.json()
+
+// POST
+const res = await fetch(&#x27;https://api.example.com/users&#x27;, {
+  method: &#x27;POST&#x27;,
+  headers: { &#x27;Content-Type&#x27;: &#x27;application/json&#x27; },
+  body: JSON.stringify({ nom: &#x27;Alice&#x27;, email: &#x27;alice@mail.com&#x27; })
+})
+
+// PUT
+await fetch(`https://api.example.com/users/${id}`, {
+  method: &#x27;PUT&#x27;,
+  headers: { &#x27;Content-Type&#x27;: &#x27;application/json&#x27; },
+  body: JSON.stringify(donneesMisesAJour)
+})
+
+// DELETE
+await fetch(`https://api.example.com/users/${id}`, { method: &#x27;DELETE&#x27; })
+
+// Avec token d&#x27;authentification
+const res = await fetch(&#x27;https://api.example.com/profil&#x27;, {
+  headers: {
+    &#x27;Authorization&#x27;: `Bearer ${token}`,
+    &#x27;Content-Type&#x27;: &#x27;application/json&#x27;
+  }
+})</code></pre><h3 id="service-api-centralisé-bonne-pratique">Service API centralisé (bonne pratique)</h3><pre><code class=" language-jsx">// src/services/api.js
+const BASE_URL = &#x27;https://jsonplaceholder.typicode.com&#x27;
+
+async function requete(endpoint, options = {}) {
+  const config = {
+    headers: { &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, ...options.headers },
+    ...options,
+  }
+  if (config.body &amp;&amp; typeof config.body === &#x27;object&#x27;) {
+    config.body = JSON.stringify(config.body)
+  }
+
+  const res = await fetch(`${BASE_URL}${endpoint}`, config)
+  if (!res.ok) {
+    const erreur = await res.json().catch(() =&gt; ({}))
+    throw new Error(erreur.message || `Erreur HTTP ${res.status}`)
+  }
+  return res.json()
+}
+
+export const api = {
+  getUsers: () =&gt; requete(&#x27;/users&#x27;),
+  getUser: (id) =&gt; requete(`/users/${id}`),
+  createUser: (data) =&gt; requete(&#x27;/users&#x27;, { method: &#x27;POST&#x27;, body: data }),
+  updateUser: (id, data) =&gt; requete(`/users/${id}`, { method: &#x27;PUT&#x27;, body: data }),
+  deleteUser: (id) =&gt; requete(`/users/${id}`, { method: &#x27;DELETE&#x27; }),
+}</code></pre><pre><code class=" language-jsx">// Utilisation dans un composant
+import { api } from &#x27;./services/api&#x27;
+
+function Utilisateurs() {
+  const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() =&gt; {
+    api.getUsers()
+      .then(setUsers)
+      .catch(console.error)
+      .finally(() =&gt; setLoading(false))
+  }, [])
+
+  async function creerUtilisateur() {
+    const nouvelUser = await api.createUser({ name: &#x27;Bob&#x27;, email: &#x27;bob@mail.com&#x27; })
+    setUsers(prev =&gt; [...prev, nouvelUser])
+  }
+
+  if (loading) return &lt;p&gt;Chargement...&lt;/p&gt;
+
+  return (
+    &lt;div&gt;
+      &lt;button onClick={creerUtilisateur}&gt;Créer&lt;/button&gt;
+      &lt;ul&gt;
+        {users.map(u =&gt; &lt;li key={u.id}&gt;{u.name}&lt;/li&gt;)}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  )
+}</code></pre><h3 id="avec-axios-alternative-populaire">Avec Axios (alternative populaire)</h3><pre><code class=" language-bash">npm install axios</code></pre><pre><code class=" language-jsx">import axios from &#x27;axios&#x27;
+
+const client = axios.create({
+  baseURL: &#x27;https://api.example.com&#x27;,
+  headers: { &#x27;Authorization&#x27;: `Bearer ${token}` }
+})
+
+// GET
+const { data } = await client.get(&#x27;/users&#x27;)
+
+// POST
+const { data: nouvelUser } = await client.post(&#x27;/users&#x27;, { nom: &#x27;Alice&#x27; })</code></pre><p>---</p><h2 id="18-react-router">18. React Router</h2><pre><code class=" language-bash">npm install react-router-dom</code></pre><h3 id="configuration-des-routes">Configuration des routes</h3><pre><code class=" language-jsx">import { BrowserRouter, Routes, Route, Link, NavLink, useNavigate, useParams, useSearchParams } from &#x27;react-router-dom&#x27;
+
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;Nav /&gt;
+      &lt;Routes&gt;
+        &lt;Route path=&quot;/&quot; element={&lt;Accueil /&gt;} /&gt;
+        &lt;Route path=&quot;/utilisateurs&quot; element={&lt;Utilisateurs /&gt;} /&gt;
+        &lt;Route path=&quot;/utilisateurs/:id&quot; element={&lt;DetailUtilisateur /&gt;} /&gt;
+        &lt;Route path=&quot;/profil&quot; element={&lt;Profil /&gt;} /&gt;
+        &lt;Route path=&quot;*&quot; element={&lt;PageNotFound /&gt;} /&gt;  {/* 404 */}
+      &lt;/Routes&gt;
+    &lt;/BrowserRouter&gt;
+  )
+}
+
+function Nav() {
+  return (
+    &lt;nav&gt;
+      &lt;Link to=&quot;/&quot;&gt;Accueil&lt;/Link&gt;
+      {/* NavLink — ajoute className &quot;active&quot; si route active */}
+      &lt;NavLink to=&quot;/utilisateurs&quot; className={({ isActive }) =&gt; isActive ? &#x27;actif&#x27; : &#x27;&#x27;}&gt;
+        Utilisateurs
+      &lt;/NavLink&gt;
+    &lt;/nav&gt;
+  )
+}</code></pre><h3 id="paramètres-durl">Paramètres d&#x27;URL</h3><pre><code class=" language-jsx">function DetailUtilisateur() {
+  const { id } = useParams()  // /utilisateurs/42 → id = &quot;42&quot;
+  const [searchParams, setSearchParams] = useSearchParams()  // ?page=2
+  const page = searchParams.get(&#x27;page&#x27;) ?? &#x27;1&#x27;
+
+  return &lt;p&gt;User #{id} — Page {page}&lt;/p&gt;
+}</code></pre><h3 id="navigation-programmatique">Navigation programmatique</h3><pre><code class=" language-jsx">function Formulaire() {
+  const navigate = useNavigate()
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    await sauvegarder()
+    navigate(&#x27;/succes&#x27;)           // Rediriger
+    navigate(-1)                  // Page précédente
+    navigate(&#x27;/accueil&#x27;, { replace: true }) // Sans historique
+  }
+}</code></pre><h3 id="routes-protégées">Routes protégées</h3><pre><code class=" language-jsx">function RouteProtegee({ children }) {
+  const { estConnecte } = useAuth()
+  return estConnecte ? children : &lt;Navigate to=&quot;/connexion&quot; replace /&gt;
+}
+
+// Utilisation
+&lt;Route path=&quot;/tableau-de-bord&quot; element={
+  &lt;RouteProtegee&gt;
+    &lt;TableauDeBord /&gt;
+  &lt;/RouteProtegee&gt;
+} /&gt;</code></pre><p>---</p><h2 id="19-gestion-des-erreurs">19. Gestion des erreurs</h2><h3 id="error-boundary-erreurs-de-rendu">Error Boundary (erreurs de rendu)</h3><pre><code class=" language-jsx">import { Component } from &#x27;react&#x27;
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { erreur: null }
+  }
+
+  static getDerivedStateFromError(error) {
+    return { erreur: error }
+  }
+
+  componentDidCatch(error, info) {
+    console.error(&#x27;Erreur capturée :&#x27;, error, info)
+  }
+
+  render() {
+    if (this.state.erreur) {
+      return this.props.fallback || &lt;p&gt;Quelque chose s&#x27;est mal passé.&lt;/p&gt;
+    }
+    return this.props.children
+  }
+}
+
+// Utilisation
+&lt;ErrorBoundary fallback={&lt;p&gt;Erreur dans ce composant&lt;/p&gt;}&gt;
+  &lt;ComposantRisque /&gt;
+&lt;/ErrorBoundary&gt;</code></pre><h3 id="trycatch-dans-les-handlers-async">try/catch dans les handlers async</h3><pre><code class=" language-jsx">function Composant() {
+  const [erreur, setErreur] = useState(null)
+
+  async function handleAction() {
+    try {
+      setErreur(null)
+      await api.doSomething()
+    } catch (err) {
+      setErreur(err.message)
+    }
+  }
+
+  return (
+    &lt;div&gt;
+      {erreur &amp;&amp; &lt;div className=&quot;alerte-erreur&quot;&gt;⚠️ {erreur}&lt;/div&gt;}
+      &lt;button onClick={handleAction}&gt;Agir&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}</code></pre><p>---</p><h2 id="20-optimisation-performance">20. Optimisation &amp; Performance</h2><h3 id="reactmemo-éviter-les-re-rendus-inutiles">React.memo — éviter les re-rendus inutiles</h3><pre><code class=" language-jsx">const CarteProduit = React.memo(function CarteProduit({ nom, prix, onClick }) {
+  console.log(&#x27;Rendu :&#x27;, nom)
+  return (
+    &lt;div onClick={onClick}&gt;
+      &lt;h3&gt;{nom}&lt;/h3&gt;
+      &lt;p&gt;{prix} €&lt;/p&gt;
+    &lt;/div&gt;
+  )
+})
+
+// Comparaison personnalisée
+const CarteProduit = React.memo(CarteProduitImpl, (prevProps, nextProps) =&gt; {
+  return prevProps.prix === nextProps.prix &amp;&amp; prevProps.nom === nextProps.nom
+  // true = ne pas re-rendre
+})</code></pre><h3 id="lazy-loading-suspense">Lazy loading &amp; Suspense</h3><pre><code class=" language-jsx">import { lazy, Suspense } from &#x27;react&#x27;
+
+// Chargement différé (code splitting automatique)
+const TableauDeBord = lazy(() =&gt; import(&#x27;./pages/TableauDeBord&#x27;))
+const Parametres = lazy(() =&gt; import(&#x27;./pages/Parametres&#x27;))
+
+function App() {
+  return (
+    &lt;Suspense fallback={&lt;div&gt;Chargement de la page...&lt;/div&gt;}&gt;
+      &lt;Routes&gt;
+        &lt;Route path=&quot;/dashboard&quot; element={&lt;TableauDeBord /&gt;} /&gt;
+        &lt;Route path=&quot;/settings&quot; element={&lt;Parametres /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/Suspense&gt;
+  )
+}</code></pre><h3 id="clés-stables-et-virtualisation">Clés stables et virtualisation</h3><pre><code class=" language-jsx">// ✅ Utiliser des IDs uniques — jamais l&#x27;index pour des listes dynamiques
+{items.map(item =&gt; &lt;Item key={item.id} {...item} /&gt;)}
+
+// Pour de très longues listes : react-window ou react-virtual
+// npm install react-window
+import { FixedSizeList } from &#x27;react-window&#x27;
+
+&lt;FixedSizeList height={400} itemCount={10000} itemSize={35} width=&quot;100%&quot;&gt;
+  {({ index, style }) =&gt; (
+    &lt;div style={style}&gt;Item {index}&lt;/div&gt;
+  )}
+&lt;/FixedSizeList&gt;</code></pre><p>---</p><h2 id="21-patterns-avancés">21. Patterns avancés</h2><h3 id="compound-components">Compound Components</h3><pre><code class=" language-jsx">// Pattern pour des composants qui partagent un état implicitement
+const AccordionContext = createContext(null)
+
+function Accordion({ children }) {
+  const [ouvert, setOuvert] = useState(null)
+  return (
+    &lt;AccordionContext.Provider value={{ ouvert, setOuvert }}&gt;
+      &lt;div&gt;{children}&lt;/div&gt;
+    &lt;/AccordionContext.Provider&gt;
+  )
+}
+
+Accordion.Item = function Item({ id, titre, children }) {
+  const { ouvert, setOuvert } = useContext(AccordionContext)
+  const estOuvert = ouvert === id
+
+  return (
+    &lt;div&gt;
+      &lt;button onClick={() =&gt; setOuvert(estOuvert ? null : id)}&gt;{titre}&lt;/button&gt;
+      {estOuvert &amp;&amp; &lt;div&gt;{children}&lt;/div&gt;}
+    &lt;/div&gt;
+  )
+}
+
+// Utilisation
+&lt;Accordion&gt;
+  &lt;Accordion.Item id=&quot;1&quot; titre=&quot;Question 1&quot;&gt;Réponse 1&lt;/Accordion.Item&gt;
+  &lt;Accordion.Item id=&quot;2&quot; titre=&quot;Question 2&quot;&gt;Réponse 2&lt;/Accordion.Item&gt;
+&lt;/Accordion&gt;</code></pre><h3 id="render-props">Render Props</h3><pre><code class=" language-jsx">function MouseTracker({ render }) {
+  const [pos, setPos] = useState({ x: 0, y: 0 })
+  return (
+    &lt;div onMouseMove={e =&gt; setPos({ x: e.clientX, y: e.clientY })}&gt;
+      {render(pos)}
+    &lt;/div&gt;
+  )
+}
+
+&lt;MouseTracker render={({ x, y }) =&gt; &lt;p&gt;Souris : {x}, {y}&lt;/p&gt;} /&gt;</code></pre><h3 id="hoc-higher-order-component">HOC (Higher-Order Component)</h3><pre><code class=" language-jsx">function avecChargement(Composant) {
+  return function ComposantAvecChargement({ loading, ...props }) {
+    if (loading) return &lt;div&gt;Chargement...&lt;/div&gt;
+    return &lt;Composant {...props} /&gt;
+  }
+}
+
+const ListeAvecChargement = avecChargement(Liste)
+
+&lt;ListeAvecChargement loading={isLoading} items={items} /&gt;</code></pre><h3 id="portals-rendre-en-dehors-du-dom-parent">Portals — rendre en dehors du DOM parent</h3><pre><code class=" language-jsx">import { createPortal } from &#x27;react-dom&#x27;
+
+function Modal({ children, estOuverte }) {
+  if (!estOuverte) return null
+
+  return createPortal(
+    &lt;div className=&quot;modal-overlay&quot;&gt;
+      &lt;div className=&quot;modal-contenu&quot;&gt;{children}&lt;/div&gt;
+    &lt;/div&gt;,
+    document.getElementById(&#x27;modal-root&#x27;)  // Élément cible dans index.html
+  )
+}</code></pre><p>---</p><h2 id="22-anti-patterns-à-éviter">22. Anti-patterns à éviter</h2><pre><code class=" language-jsx">// ❌ Muter le state directement
+state.items.push(newItem)         // FAUX
+setItems(prev =&gt; [...prev, newItem]) // CORRECT
+
+// ❌ useState dans une condition ou boucle
+if (condition) {
+  const [val, setVal] = useState(0) // INTERDIT — ordre des hooks doit être constant
+}
+
+// ❌ Oublier les dépendances dans useEffect
+useEffect(() =&gt; {
+  fetchData(userId) // userId utilisé mais pas dans le tableau
+}, [])  // ❌ → [userId]
+
+// ❌ useEffect pour synchroniser deux states
+const [a, setA] = useState(0)
+const [double, setDouble] = useState(0)
+useEffect(() =&gt; setDouble(a * 2), [a]) // ❌
+// ✅ Calculer pendant le rendu
+const double = a * 2
+
+// ❌ Créer des composants dans des composants
+function Parent() {
+  function Enfant() { return &lt;p&gt;...&lt;/p&gt; } // Re-créé à chaque rendu !
+  return &lt;Enfant /&gt;
+}
+
+// ❌ useEffect pour gérer des événements
+useEffect(() =&gt; {
+  // Pas besoin d&#x27;un effect pour ça — utiliser un handler
+  if (clicked) { doSomething() }
+}, [clicked])
+
+// ❌ Index comme clé dans une liste dynamique
+items.map((item, index) =&gt; &lt;li key={index}&gt;{item}&lt;/li&gt;)  // Problèmes si réordonné
+items.map(item =&gt; &lt;li key={item.id}&gt;{item.nom}&lt;/li&gt;)  // ✅
+
+// ❌ Trop de state — préférer dériver les valeurs
+const [prenom, setPrenom] = useState(&#x27;&#x27;)
+const [nomComplet, setNomComplet] = useState(&#x27;&#x27;) // ❌ dépend de prenom
+const nomComplet = `${prenom} ${nom}` // ✅ calculé</code></pre><p>---</p><h2 id="récapitulatif-des-hooks">Récapitulatif des hooks</h2><table><thead><tr><th>Hook</th><th>Usage</th></tr></thead><tbody><tr><td><code>useState</code></td><td>État local du composant</td></tr><tr><td><code>useEffect</code></td><td>Effets de bord (fetch, timers, DOM)</td></tr><tr><td><code>useRef</code></td><td>Accès DOM ou valeur persistante sans re-rendu</td></tr><tr><td><code>useContext</code></td><td>Consommer un contexte</td></tr><tr><td><code>useReducer</code></td><td>État complexe avec actions</td></tr><tr><td><code>useMemo</code></td><td>Mémoriser un calcul coûteux</td></tr><tr><td><code>useCallback</code></td><td>Mémoriser une fonction</td></tr><tr><td><code>useId</code></td><td>Générer un ID unique accessible</td></tr><tr><td><code>useTransition</code></td><td>Marquer une update comme non urgente</td></tr><tr><td><code>useDeferredValue</code></td><td>Reporter une valeur pour fluidifier l&#x27;UI</td></tr></tbody></table><p>---</p><blockquote><p>📌 <strong>Règles des hooks</strong> — toujours respecter :</p><p>1. Appeler les hooks <strong>uniquement au niveau supérieur</strong> (pas dans des conditions/boucles)</p><p>2. Appeler les hooks <strong>uniquement dans des composants React</strong> ou des custom hooks</p><p>3. Les custom hooks <strong>commencent toujours par <code>use</code></strong></p></blockquote>
+    </article>
+  </div>
+  <a href="#" class="top-button">↑ Haut</a>
+</body>
+</html>
